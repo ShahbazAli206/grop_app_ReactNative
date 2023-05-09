@@ -1,20 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// import  Providers  from './src/Providers';
+import React from 'react';
+import { AuthProvider } from './src/AuthProvider';
+import Routes  from './src/Routes';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default () => {    return (
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
+    );
+  };
