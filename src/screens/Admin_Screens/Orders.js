@@ -79,7 +79,7 @@ const Orders = () => {
   const renderHeader = () => {
     return (
       <LinearGradient
-        colors={["#e31bdc", "yellow", "#9fffff"]}
+        colors={["#f2ff", "#00ffff", "#ffff"]}
         style={styles.header}
       >
         {/* <View style={styles.header}> */}
@@ -99,7 +99,15 @@ const Orders = () => {
     >
       <View>
         <LinearGradient
-          colors={["#cce6ff", "yellow", "#f9ff"]}
+          colors={[
+            "#f2ff",
+            "#ffff",
+            "#00ffff",
+            "#00ffff",
+            "#00ffff",
+            "#00ffff",
+            "#ffff",
+          ]}
           style={{
             flex: 1,
             flexDirection: "row",
@@ -121,23 +129,23 @@ const Orders = () => {
               Order ID :: <Text style={styles.itemTitle_id}>{item.id}</Text>
             </Text>
             <Text style={styles.itemQuantity}>
-              <Text style={styles.itemPrice}> Name:       </Text>
+              <Text style={styles.itemPrice}> Name: </Text>
               {item.name ? item.name : "Not available"}
             </Text>
             <Text style={styles.itemStatus}>
-              <Text style={styles.itemPrice}> Status:      </Text>
+              <Text style={styles.itemPrice}> Status: </Text>
               {item.status}
             </Text>
             <Text style={styles.itemQuantity}>
-              <Text style={styles.itemPrice}> Email :       </Text>
+              <Text style={styles.itemPrice}> Email : </Text>
               {item.email ? item.email : "Not available"}
             </Text>
             <Text style={styles.itemQuantity}>
-              <Text style={styles.itemPrice}> Contact :   </Text>
+              <Text style={styles.itemPrice}> Contact : </Text>
               {item.phone ? item.phone : "Not available"}
             </Text>
             <Text style={styles.itemQuantity}>
-              <Text style={styles.itemPrice}> Address :  </Text>
+              <Text style={styles.itemPrice}> Address : </Text>
               {item.address ? item.address : "Not available"}
             </Text>
           </View>
@@ -167,91 +175,118 @@ const Orders = () => {
               setName("");
             }}
           >
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
-                <Text style={styles.form_header}>
-                  {" "}
-                  Edit Order{" "}
-                  <Text style={styles.form_header_id}>
-                    ( ' {itemClicked.id} ' )
-                  </Text>
+            <LinearGradient
+              colors={[
+                "#f2ff",
+                "#ff9f",
+                "#00ffff",
+                "#00ffff",
+                "#00ffff",
+                "#ff9f",
+                "#f2ff",
+              ]}
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: "20%",
+                maxHeight: "80%",
+                margin: 20,
+                // width: "90%",
+                backgroundColor: "#ff9f",
+                borderRadius: 20,
+                padding: 35,
+                shadowColor: "#fff5",
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 4,
+                elevation: 5,
+              }}
+            >
+              <Text style={styles.form_header}>
+                {" "}
+                Edit Order{" "}
+                <Text style={styles.form_header_id}>
+                  ( ' {itemClicked.id} ' )
                 </Text>
-                <View>
-                  <Text style={styles.label}>Name</Text>
-                  <TextInput
-                    style={styles.form_input}
-                    value={name}
-                    onChangeText={setName}
-                    placeholder={itemClicked.name}
-                  />
-                </View>
+              </Text>
 
-                <View>
-                  <Text style={styles.label}>Email</Text>
-                  <TextInput
-                    style={styles.form_input}
-                    value={email}
-                    onChangeText={setEmail}
-                    placeholder={itemClicked.email}
-                  />
-                </View>
-                <View>
-                  <Text style={styles.label}>Phone</Text>
-                  <TextInput
-                    style={styles.form_input}
-                    value={phone}
-                    onChangeText={setPhone}
-                    placeholder={itemClicked.phone}
-                  />
-                </View>
-
-                <View>
-                  <Text style={styles.label}>Address</Text>
-                  <TextInput
-                    style={styles.form_input}
-                    value={address}
-                    onChangeText={setAddress}
-                    placeholder={itemClicked.address}
-                  />
-                </View>
-
-                <View>
-                  <Text style={styles.label}>Status</Text>
-                  <TextInput
-                    style={styles.form_input}
-                    value={status}
-                    onChangeText={setStatus}
-                    placeholder={itemClicked.status}
-                  />
-                </View>
-                <View style={styles.buttonContainer}>
-                  <Pressable
-                    style={styles.UpdateButton}
-                    onPress={() => {
-                      setModalVisible(!modalVisible);
-                      setitemClicked("");
-                      update_order();
-                      console.log(
-                        "\n this is data for call \n",
-                        updatedColumns
-                      );
-                    }}
-                  >
-                    <Text style={styles.UpdateButtonText}>Update</Text>
-                  </Pressable>
-
-                  <Pressable
-                    style={styles.CloseButton}
-                    onPress={() => {
-                      setModalVisible(!modalVisible);
-                      clear_var();
-                    }}
-                  >
-                    <Text style={styles.UpdateButtonText}>Close Modal</Text>
-                  </Pressable>
-                </View>
+              <View>
+                <Text style={styles.label}>Name</Text>
+                <TextInput
+                  style={styles.form_input}
+                  value={name}
+                  onChangeText={setName}
+                  placeholder={itemClicked.name}
+                />
               </View>
-            </View>
+
+              <View>
+                <Text style={styles.label}>Email</Text>
+                <TextInput
+                  style={styles.form_input}
+                  value={email}
+                  onChangeText={setEmail}
+                  placeholder={itemClicked.email}
+                />
+              </View>
+
+              <View>
+                <Text style={styles.label}>Phone</Text>
+                <TextInput
+                  style={styles.form_input}
+                  value={phone}
+                  onChangeText={setPhone}
+                  placeholder={itemClicked.phone}
+                />
+              </View>
+
+              <View>
+                <Text style={styles.label}>Address</Text>
+                <TextInput
+                  style={styles.form_input}
+                  value={address}
+                  onChangeText={setAddress}
+                  placeholder={itemClicked.address}
+                />
+              </View>
+
+              <View>
+                <Text style={styles.label}>Status</Text>
+                <TextInput
+                  style={styles.form_input}
+                  value={status}
+                  onChangeText={setStatus}
+                  placeholder={itemClicked.status}
+                />
+              </View>
+              <View style={styles.buttonContainer}>
+                <Pressable
+                  style={styles.UpdateButton}
+                  onPress={() => {
+                    setModalVisible(!modalVisible);
+                    setitemClicked("");
+                    update_order();
+                    console.log("\n this is data for call \n", updatedColumns);
+                  }}
+                >
+                  <Text style={styles.UpdateButtonText}>Update</Text>
+                </Pressable>
+
+                <Pressable
+                  style={styles.CloseButton}
+                  onPress={() => {
+                    setModalVisible(!modalVisible);
+                    clear_var();
+                  }}
+                >
+                  <Text style={styles.UpdateButtonText}>Close Modal</Text>
+                </Pressable>
+              </View>
+            </LinearGradient>
           </Modal>
         )}
       </ImageBackground>
@@ -286,8 +321,10 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     backgroundColor: "#f0f0f0",
+    margin: 4,
     padding: 10,
     borderBottomWidth: 1,
+    borderRadius: 15,
     borderBottomColor: "#ccc",
   },
   headerText: {
@@ -370,19 +407,19 @@ const styles = StyleSheet.create({
   },
   itemPrice: {
     fontSize: 16,
-    color: "#552b2b",
+    color: "#f24220",
     fontWeight: "bold",
     marginBottom: 5,
   },
   centeredView: {
-    flex: 1,
+    // flex: 1,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 18,
   },
   modalView: {
     margin: 20,
-    width: "90%",
+    // width: "90%",
     backgroundColor: "#ff9f",
     borderRadius: 20,
     padding: 35,
@@ -431,7 +468,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   CloseButton: {
-    backgroundColor: "#9f6A12",
+    backgroundColor: "#f24220",
     padding: 10,
     borderRadius: 19,
     alignItems: "center",

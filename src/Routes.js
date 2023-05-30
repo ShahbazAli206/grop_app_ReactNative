@@ -41,7 +41,14 @@ export default function Routes() {
 
   if (loading) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "blue",
+        }}
+      >
         <ActivityIndicator size="large" />
       </View>
     );
@@ -49,9 +56,9 @@ export default function Routes() {
   return (
     <NavigationContainer>
       {user ? (
-        user.role == 2 ? (
+        user.role == 1 ? (
           <Dash_Admin /> // user.role == 2
-        ) : user.role == 1 ? (
+        ) : user.role == 2 ? (
           <Dash_Res /> // user.role == 1
         ) : (
           <Dash_Tech />

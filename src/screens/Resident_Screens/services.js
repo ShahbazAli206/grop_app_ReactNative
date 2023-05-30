@@ -36,7 +36,7 @@ function Services({ navigation }) {
         }
       })
       .catch((error) => {
-        console.log("hooooo errror aaa", error.response);
+        console.log("hooooo errror aaa\n\n\n", error.response);
       });
   };
 
@@ -49,11 +49,7 @@ function Services({ navigation }) {
       .then((response) => {
         if (response.data) {
           setIs_present(response.data.is_present);
-          // console.log("\n Clicked service is present in wislhist already\n", response.data.is_present);
-          console.log(
-            "\n Clicked service is NOT ** present in wislhist\n",
-            Is_present
-          );
+          console.log("\n Clicked service is NOT ** present in wislhist\n");
         }
       })
       .catch((error) => {
@@ -145,12 +141,7 @@ function Services({ navigation }) {
   );
 
   return (
-    <View
-      style={{
-        flex: 1,
-        // alignItems: 'center',backgroundColor:  '#d9ffb3', justifyContent: 'center'
-      }}
-    >
+    <View style={{ flex: 1 }}>
       <ImageBackground source={bckimage} style={styles.image_bck_vew}>
         <SafeAreaView style={styles.container}>
           <FlatList
@@ -166,7 +157,8 @@ function Services({ navigation }) {
                 colors={item.colors}
               />
             )}
-            keyExtractor={keyExtractor}
+            // keyExtractor={keyExtractor}
+            keyExtractor={(item) => item.id.toString()}
           />
         </SafeAreaView>
         <Modal

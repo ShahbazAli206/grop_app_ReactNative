@@ -18,19 +18,9 @@ const bckimage = require("../assets/bck3.jpg");
 
 function LoginScreen({ navigation }) {
   const { login, error } = useContext(AuthContext);
-  const [email, setEmail] = useState("resident@gmail.com");
-  const [password, setPassword] = useState("resident@gmail");
+  const [email, setEmail] = useState("sa38299793@gmail.com");
+  const [password, setPassword] = useState("test1234");
   const [modalVisible, setModalVisible] = useState(false);
-  //resident@gmail.com   Email
-  //resident@gmail       Password
-
-  // Technician Credentials
-  // shabaz@gmail.com
-  // resident@gmail
-
-  // Admin Credentials
-  //admin01@gmail.com
-  // admin0123
 
   return (
     <View style={styles.container}>
@@ -177,21 +167,23 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   label: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
     marginTop: 20,
+    color: "#8000ff",
     marginBottom: 5,
   },
   input: {
-    height: 40,
+    height: 50,
     borderColor: "#ccc",
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 16,
     paddingHorizontal: 10,
+    backgroundColor: "#cce0ff",
     marginBottom: 20,
   },
   forgotPassword: {
-    fontSize: 14,
+    fontSize: 18,
     color: "#007AFF",
     textDecorationLine: "underline",
     alignSelf: "flex-end",
@@ -208,6 +200,7 @@ const styles = StyleSheet.create({
   lognWraper: {
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 10,
   },
   loginButtonText: {
     color: "#fff",
@@ -239,7 +232,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   buttonContainer: {
-    marginTop: 10,
+    marginTop: 25,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

@@ -1,10 +1,9 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { NavigationContainer } from "@react-navigation/native";
-import { Adm_Dashboard } from "./Adm_Dashboard";
 import Profile from "./Profile";
+import Chat from "./Chat";
+import Tech_Dashboard from "./Tech_Dashboard";
 
 const Tab = createBottomTabNavigator();
 
@@ -12,6 +11,7 @@ const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        headerShown: false,
         tabBarIcon: ({ focused, color, size }) => {
           if (route.name === "Home") {
             return (
@@ -49,21 +49,9 @@ const BottomTabNavigator = () => {
         tabBarActiveTintColor: "tomato",
       })}
     >
-      <Tab.Screen
-        name="Home"
-        component={Adm_Dashboard}
-        options={{ headerShown: false }}
-      />
-      <Tab.Screen
-        name="Chat"
-        options={{ tabBarBadge: 3, headerShown: false }}
-        component={Adm_Dashboard}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{ headerShown: false }}
-      />
+      <Tab.Screen name="Home" component={Tech_Dashboard} />
+      <Tab.Screen name="Chat" options={{ tabBarBadge: 3 }} component={Chat} />
+      <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
 };

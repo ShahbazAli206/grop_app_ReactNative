@@ -61,7 +61,7 @@ const chartConfig = {
 };
 const bckimage = require("../../../assets/bck3.jpg");
 
-export default function Res_Dashboard() {
+export default function Tech_Dashboard() {
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground source={bckimage} style={styles.image_bck_vew}>

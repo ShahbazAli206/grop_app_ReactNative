@@ -20,13 +20,15 @@ const bckimage = require("../../../assets/bck1.jpg");
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 const CustomDrawerContent = (props) => {
+  const { user } = useContext(AuthContext);
+
   const items = [
-    { name: "Home", icon: "home" },
-    { name: "Profile", icon: "account-circle" },
+    { name: "Dashboard", icon: "home" },
     { name: "Services", icon: "category" },
-    { name: "Order Status", icon: "shopping-cart" },
     { name: "Wishlist", icon: "favorite" },
+    { name: "Order Status", icon: "shopping-cart" },
     { name: "Notifications", icon: "notifications" },
+    { name: "Profile", icon: "account-circle" },
   ];
 
   return (
@@ -38,23 +40,21 @@ const CustomDrawerContent = (props) => {
     >
       <View
         style={{
-          padding: 10,
+          paddingTop: 25,
           marginTop: 40,
           justifyContent: "center",
           alignItems: "center",
         }}
       >
         <Image
-          // source={{ uri: 'https://example.com/myimage.png' }}
-          source={bckimage}
-          style={{ width: 80, height: 80, borderRadius: 40 }}
+          source={{ uri: `http://127.0.0.1:8000/storage/${user.profile}` }}
+          style={{ width: 160, height: 160, borderRadius: 140 }}
         />
-        <Text style={{ fontSize: 20, fontWeight: "bold", marginVertical: 10 }}>
+        <Text style={{ fontSize: 20, fontWeight: "bold", marginTop: 10 }}>
           Resident portal
         </Text>
       </View>
       <DrawerContentScrollView {...props}>
-        {/* <DrawerItemList {...props} activeTintColor="#fff" labelStyle={{ fontSize: 29,  fontWeight: 'bold' }}/> */}
         {items.map((item, index) => (
           <DrawerItem
             key={index}
@@ -64,16 +64,17 @@ const CustomDrawerContent = (props) => {
             )}
             onPress={() => props.navigation.navigate(item.name)}
             labelStyle={{ fontWeight: "bold", fontSize: 20 }}
-            style={{ marginVertical: 10 }}
+            style={{ marginVertical: 5 }}
           />
         ))}
+        <Text style={{ margin: 30, paddingLeft: 30 }}>-------***********-------</Text>
       </DrawerContentScrollView>
     </LinearGradient>
   );
 };
 
 function MyDrawer() {
-  const { logout } = useContext(AuthContext);
+  const { logout, user } = useContext(AuthContext);
   const Drawer = createDrawerNavigator();
   const defaultScreenOpt = {
     headerRight: () => (
@@ -110,10 +111,11 @@ function MyDrawer() {
 
   return (
     <Drawer.Navigator
+      initialRouteName="Profile"
       screenOptions={defaultScreenOpt}
       drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
-      <Drawer.Screen name="Resident_Home" component={TabNavigator} />
+      <Drawer.Screen name="Dashboard" component={TabNavigator} />
       <Drawer.Screen name="Services" component={Services} />
       <Drawer.Screen name="Order Status" component={Order_status} />
       <Drawer.Screen name="Wishlist" component={WishData} />

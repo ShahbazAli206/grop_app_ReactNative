@@ -47,7 +47,7 @@ const Categories = () => {
   const renderHeader = () => {
     return (
       <LinearGradient
-        colors={["#e31bdc", "yellow", "#9fffff"]}
+        colors={["#f24220", "#00ffff", "#ffff", "#f2ff"]}
         style={styles.header}
       >
         <Text style={styles.headerText}>ID</Text>
@@ -115,22 +115,48 @@ const Categories = () => {
 
   const renderItem = ({ item }) => (
     <TouchableOpacity style={styles.item} onPress={() => onEdit(item)}>
-      <View style={styles.itemLeft}>
-        <View style={styles.itemid_view}>
-          <Text style={styles.itemText_id}>{item.id}</Text>
+      <LinearGradient
+        colors={[
+          "#f2ff",
+          "#ffff",
+          "#00ffff",
+          "#00ffff",
+          // "#ffff",
+          // "#f2ff",
+        ]}
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          alignItems: "center",
+          padding: 10,
+          // marginVertical: 5,
+          // marginHorizontal: 10,
+          backgroundColor: "#9fffff",
+          borderRadius: 10,
+          shadowColor: "blue",
+          shadowOffset: { width: 6, height: 6 },
+          shadowOpacity: 0.9,
+          shadowRadius: 8,
+          elevation: 3,
+        }}
+      >
+        <View style={styles.itemLeft}>
+          <View style={styles.itemid_view}>
+            <Text style={styles.itemText_id}>{item.id}</Text>
+          </View>
+          <View style={styles.itemText_view}>
+            <Text style={styles.itemText_name}>{item.name}</Text>
+          </View>
         </View>
-        <View style={styles.itemText_view}>
-          <Text style={styles.itemText_name}>{item.name}</Text>
+        <View style={styles.itemRight}>
+          <TouchableOpacity onPress={() => onEdit(item)}>
+            <AntDesign name="edit" size={24} color="purple" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => onDelete(item)}>
+            <AntDesign name="delete" size={24} color="red" />
+          </TouchableOpacity>
         </View>
-      </View>
-      <View style={styles.itemRight}>
-        <TouchableOpacity onPress={() => onEdit(item)}>
-          <AntDesign name="edit" size={24} color="purple" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => onDelete(item)}>
-          <AntDesign name="delete" size={24} color="red" />
-        </TouchableOpacity>
-      </View>
+      </LinearGradient>
     </TouchableOpacity>
   );
 
@@ -252,7 +278,7 @@ const Categories = () => {
           onPress={handleAddButtonPress}
           style={styles.addButton}
         >
-          <Ionicons name="add" size={32} color="purple" />
+          <Ionicons name="add" size={36} color="white" />
         </TouchableOpacity>
       </ImageBackground>
     </View>
@@ -274,7 +300,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 30,
     right: 10,
-    backgroundColor: "#eab676",
+    backgroundColor: "#f24220",
     borderRadius: 30,
     width: 50,
     height: 50,
@@ -286,12 +312,13 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     backgroundColor: "purple",
-    padding: 10,
+    padding: 12,
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
     borderRadius: 15,
   },
   headerText: {
+    fontSize: 18,
     flex: 1,
     fontWeight: "bold",
     textAlign: "center",
@@ -321,24 +348,14 @@ const styles = StyleSheet.create({
   // updated style after space
   item: {
     borderRadius: 5,
-    padding: 20,
-    marginBottom: 10,
 
     flexDirection: "row",
-    alignItems: "center",
-    marginVertical: 5,
-    marginHorizontal: 10,
-    backgroundColor: "#9fffff",
-    borderRadius: 10,
-    shadowColor: "blue",
-    shadowOffset: { width: 6, height: 6 },
-    shadowOpacity: 0.9,
-    shadowRadius: 8,
-    elevation: 3,
-    justifyContent: "space-between",
+    marginVertical: 15,
+    marginHorizontal: 5,
+    paddingHorizontal: 5,
   },
   list: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 5,
     paddingVertical: 10,
   },
   itemLeft: {

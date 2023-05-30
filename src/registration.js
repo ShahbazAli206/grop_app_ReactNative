@@ -118,18 +118,20 @@ const styles = StyleSheet.create({
     width: '98%',
   },
   title: {
+    marginTop: 30,
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#273c75', // Title color
+    marginBottom: 10,
+    color: '#273c75',
   },
   input: {
     borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: "#cce0ff",
     borderColor: 'gray',
     padding: 10,
     margin: 10,
     width: '80%',
-    backgroundColor: '#ffffff', // Input background color
   },
   dropdownContainer: {
     flexDirection: 'row',

@@ -14,24 +14,39 @@ import Orders from "./Orders";
 import WishlistScreen from "./Wishlist";
 import Categories from "./Categories";
 import TabNavigator from "./TabNavigator";
+import Profile from "./Profile";
 import { AuthContext } from "../../AuthProvider";
 const bckimage = require("../../../assets/bck1.jpg");
 import Icon from "react-native-vector-icons/MaterialIcons";
 
-
 const CustomDrawerContent = (props) => {
+  const { user } = useContext(AuthContext);
   const items = [
     { name: "Admin Dashboard", icon: "home" },
     { name: "Orders", icon: "favorite" },
     { name: "Services", icon: "shopping-cart" },
     { name: "Categories", icon: "category" },
+    { name: "Users", icon: "account-circle" },
     { name: "Notifications", icon: "notifications" },
+    { name: "Chat", icon: "chat" },
     { name: "Profile", icon: "account-circle" },
   ];
 
+  let roleText;
+
+  if (user.role === 2) {
+    roleText = "Admin";
+  } else if (user.role === 1) {
+    roleText = "Resident";
+  } else if (user.role === 3) {
+    roleText = "Technician";
+  } else {
+    roleText = "unauthenticated";
+  }
+
   return (
     <LinearGradient
-      colors={["#ffaf40", "#e26af0", "#ffff"]}
+      colors={["#e26af0", "#ffaf40", "#ffff"]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 0 }}
       style={{ flex: 1 }}
@@ -39,22 +54,21 @@ const CustomDrawerContent = (props) => {
       <View
         style={{
           padding: 10,
-          marginTop: 40,
+          paddingBottom: 0,
+          marginTop: 50,
           justifyContent: "center",
           alignItems: "center",
         }}
       >
         <Image
-          // source={{ uri: 'https://example.com/myimage.png' }}
-          source={bckimage}
-          style={{ width: 80, height: 80, borderRadius: 40 }}
+          source={{ uri: `http://127.0.0.1:8000/storage/${user.profile}` }}
+          style={{ width: 180, height: 180, borderRadius: 140 }}
         />
-        <Text style={{ fontSize: 20, fontWeight: "bold", marginVertical: 10 }}>
-          Resident portal
+        <Text style={{ fontSize: 28, fontWeight: "bold", marginTop: 10 }}>
+          {roleText} portal
         </Text>
       </View>
       <DrawerContentScrollView {...props}>
-        {/* <DrawerItemList {...props} activeTintColor="#fff" labelStyle={{ fontSize: 29,  fontWeight: 'bold' }}/> */}
         {items.map((item, index) => (
           <DrawerItem
             key={index}
@@ -64,9 +78,12 @@ const CustomDrawerContent = (props) => {
             )}
             onPress={() => props.navigation.navigate(item.name)}
             labelStyle={{ fontWeight: "bold", fontSize: 20 }}
-            style={{ marginVertical: 10 }}
+            style={{ marginVertical: 4 }}
           />
         ))}
+        <Text style={{ margin: 20, paddingLeft: 30 }}>
+          -------***********-------
+        </Text>
       </DrawerContentScrollView>
     </LinearGradient>
   );
@@ -81,7 +98,7 @@ function MyDrawer() {
         onPress={() => logout()}
         style={{
           marginRight: 10,
-          backgroundColor: "purple",
+          backgroundColor: "#f24220",
           padding: 6,
           borderRadius: 15,
         }}
@@ -95,17 +112,17 @@ function MyDrawer() {
     headerStyle: { backgroundColor: "transparent" },
     headerBackground: () => (
       <LinearGradient
-        colors={["#f2ff", "#F44336"]}
+        colors={["#f2ff", "#F44336", "#fcff"]}
         style={{ flex: 1 }}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
       />
     ),
-    headerTintColor: "green",
+    headerTintColor: "black",
     paddingleft: 120,
     headerTitleStyle: {
       fontWeight: "bold",
-      fontSize: 25,
+      fontSize: 28,
     },
   };
 
@@ -117,7 +134,7 @@ function MyDrawer() {
       <Drawer.Screen name="Admin Dashboard" component={TabNavigator} />
       <Drawer.Screen name="Orders" component={Orders} />
       <Drawer.Screen name="Notifications" component={WishlistScreen} />
-      <Drawer.Screen name="Profile" component={Orders} />
+      <Drawer.Screen name="Profile" component={Profile} />
       <Drawer.Screen name="Categories" component={Categories} />
       <Drawer.Screen name="Services" component={Categories} />
     </Drawer.Navigator>
