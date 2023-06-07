@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { AuthContext } from "./AuthProvider";
 import {
@@ -18,7 +17,7 @@ const bckimage = require("../assets/bck3.jpg");
 
 function LoginScreen({ navigation }) {
   const { login, error } = useContext(AuthContext);
-  const [email, setEmail] = useState("sa38299793@gmail.com");
+  const [email, setEmail] = useState("engmshahbazali206@gmail.com");
   const [password, setPassword] = useState("test1234");
   const [modalVisible, setModalVisible] = useState(false);
 

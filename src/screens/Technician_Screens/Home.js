@@ -30,6 +30,18 @@ const CustomDrawerContent = (props) => {
     { name: "Profile", icon: "account-circle" },
   ];
 
+  let roleText;
+
+  if (user.role === 1) {
+    roleText = "Admin";
+  } else if (user.role === 2) {
+    roleText = "Resident";
+  } else if (user.role === 3) {
+    roleText = "Technician";
+  } else {
+    roleText = "unauthenticated";
+  }
+
   return (
     <LinearGradient
       colors={["#ffaf40", "#e26af0", "#ffff"]}
@@ -49,8 +61,11 @@ const CustomDrawerContent = (props) => {
           source={{ uri: `http://127.0.0.1:8000/storage/${user.profile}` }}
           style={{ width: 160, height: 160, borderRadius: 140 }}
         />
+        <Text style={{ fontSize: 24, fontWeight: "bold", marginTop: 10 }}>
+          {user.name}
+        </Text>
         <Text style={{ fontSize: 20, fontWeight: "bold", marginTop: 10 }}>
-          Resident portal
+          {roleText} Portal
         </Text>
       </View>
       <DrawerContentScrollView {...props}>
@@ -112,7 +127,7 @@ function MyDrawer() {
 
   return (
     <Drawer.Navigator
-      initialRouteName="Profile"
+      // initialRouteName="Profile"
       screenOptions={defaultScreenOpt}
       drawerContent={(props) => <CustomDrawerContent {...props} />}
     >

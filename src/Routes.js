@@ -1,13 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  ActivityIndicator,
-  AsyncStorage,
-} from "react-native";
+import { View, ActivityIndicator } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { AuthContext } from "./AuthProvider";
 import { Authentication } from "./Authentication";
@@ -17,7 +9,7 @@ import * as SecureStore from "expo-secure-store";
 import Dash_Admin from "./screens/Admin_Screens/Home";
 
 export default function Routes() {
-  const { user, setUser, login, logout } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

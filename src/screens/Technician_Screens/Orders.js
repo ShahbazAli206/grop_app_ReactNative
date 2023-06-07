@@ -11,20 +11,22 @@ import {
   Modal,
 } from "react-native";
 import axios from "axios";
+import { AuthContext } from "../../AuthProvider";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 
 axios.defaults.baseURL = "http://127.0.0.1:8000";
 
 const Orders = () => {
+  const { user } = useContext(AuthContext);
   const bckimage = require("../../../assets/bck3.jpg");
   const [categories, setcategories] = useState([]);
 
   const onAccept = (item) => {
     // handle the add button press here
-    console.log("onAccept button pressed\n", item.id);
+    console.log("onAccept button pressed\n", item.order_id);
     axios
-      .put(`/api/orders/${item.id}/status`)
+      .put(`/api/orders/${item.order_id}/status`)
       .then((response) => {
         console.log("\n Congrats the Order is Accepted by You \n ", categories);
         setcategories(response.data);
@@ -32,6 +34,7 @@ const Orders = () => {
       .catch((error) => {
         console.log(error);
       });
+    tech_Orders();
   };
 
   const renderHeader = () => {
@@ -50,8 +53,9 @@ const Orders = () => {
   };
 
   const tech_Orders = () => {
+    console.log("g sir");
     axios
-      .get("/api/tech_orders")
+      .get(`/api/tech_orders/${user.category_id}`)
       .then((response) => {
         console.log("\n Got it, ******* data of tech_Orders \n ", categories);
         setcategories(response.data);
@@ -92,7 +96,7 @@ const Orders = () => {
       >
         <View style={styles.itemLeft}>
           <View style={styles.itemid_view}>
-            <Text style={styles.itemText_id}>{item.id}</Text>
+            <Text style={styles.itemText_id}>{item.order_id}</Text>
           </View>
 
           <View style={styles.itemid_view}>

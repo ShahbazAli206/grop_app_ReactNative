@@ -27,17 +27,13 @@ export const AuthProvider = ({ children }) => {
               console.log("gggg sir ggg ********* ");
 
               if (response) {
-                // console.log(
-                //   "\n\nall data from response ********* \n",
-                //   response.data
-                // );
-
                 const userResponse = {
                   email: response.data.user.email,
                   email_verified: response.data.user.email_verified_at,
                   token: response.data.token,
                   id: response.data.user.id,
                   role: response.data.user.role,
+                  category_id: response.data.user.category_id,
                   name: response.data.user.name,
                   profile: response.data.user.profile_photo_path,
                   phone: response.data.user.ph_no,

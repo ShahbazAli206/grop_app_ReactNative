@@ -30,6 +30,17 @@ const CustomDrawerContent = (props) => {
     { name: "Notifications", icon: "notifications" },
     { name: "Profile", icon: "account-circle" },
   ];
+  let roleText;
+
+  if (user.role === 1) {
+    roleText = "Admin";
+  } else if (user.role === 2) {
+    roleText = "Resident";
+  } else if (user.role === 3) {
+    roleText = "Technician";
+  } else {
+    roleText = "unauthenticated";
+  }
 
   return (
     <LinearGradient
@@ -51,7 +62,7 @@ const CustomDrawerContent = (props) => {
           style={{ width: 160, height: 160, borderRadius: 140 }}
         />
         <Text style={{ fontSize: 20, fontWeight: "bold", marginTop: 10 }}>
-          Resident portal
+          {roleText}
         </Text>
       </View>
       <DrawerContentScrollView {...props}>
@@ -67,7 +78,9 @@ const CustomDrawerContent = (props) => {
             style={{ marginVertical: 5 }}
           />
         ))}
-        <Text style={{ margin: 30, paddingLeft: 30 }}>-------***********-------</Text>
+        <Text style={{ margin: 30, paddingLeft: 30 }}>
+          -------***********-------
+        </Text>
       </DrawerContentScrollView>
     </LinearGradient>
   );

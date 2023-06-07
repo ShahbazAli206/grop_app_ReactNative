@@ -33,10 +33,9 @@ const CustomDrawerContent = (props) => {
   ];
 
   let roleText;
-
-  if (user.role === 2) {
+  if (user.role === 1) {
     roleText = "Admin";
-  } else if (user.role === 1) {
+  } else if (user.role === 2) {
     roleText = "Resident";
   } else if (user.role === 3) {
     roleText = "Technician";
